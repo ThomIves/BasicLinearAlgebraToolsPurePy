@@ -16,7 +16,7 @@ At the other end of the spectrum, if you have background with python and linear 
 
 ## Further Explanation
 
-Please find the blog post related to this repo at https://integratedmlai.com/
+Please find the blog post related to this repo at https://integratedmlai.com/basic-linear-algebra-tools-in-pure-python-without-numpy-or-scipy/
 
 ## Deploying / Publishing
 
