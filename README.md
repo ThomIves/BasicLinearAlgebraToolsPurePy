@@ -1,21 +1,22 @@
 
-# System of Equations
+# BASIC Linear Algebra Tools in Pure Python without Numpy or Scipy
 
-![System of Equations Logo](https://github.com/ThomIves/SystemOfEquations/blob/master/System_of_Equations_Logo.png)
-> A step by step explanation of how to solve for a system of equations using jupyter notebooks and python scripts.
+![Basic Linear Algebra_Py_Tools Logo](https://github.com/ThomIves/BasicLinearAlgebraToolsPurePy/blob/master/Basic_Tools_Logo.png)
+> A set of basic linear algebra tools in pure python without numpy or scipy to be used in upcoming posts.
 
-The Jupyter notebooks walks thru a brute force procedural method for solving a system of equations with pure Python. Why wouldn’t we just use numpy? Great question. This work is about creating tools that add efficiency AND clarity. I love numpy, pandas, sklearn, and all the great tools that the python data science community brings to us, but I have learned that the better I understand the “principles” of a thing, the better I know how to apply it. Plus, tomorrow's machine learning tools will be developed by those that understand the "principles" of the math and coding of today’s tools.
+Our goal is to better understand principles of machine learning tools by exploring how to code them ourselves ...
 
-## Getting started
+Meaning, we are seeking to code these tools without using the **AWESOME** python modules available for machine learning. 
 
-1. DevelopmentNotebook.ipynb contains the brute force code used to illustrate the methods.
-   DevelopmentNotebook.py is a python script version of DevelopmentNotebook.ipynb for those that do not use Jupyter notebooks.
-2. ODFDevNB.ipynb contains similar code to DevelopmentNotebook.ipynb but prints output in LibreOffice Math format to automate the illustrations of the matrix math. It also had a corresponding .py file.
-3. SystemOfEquationsStepByStep.ipynb is the programming used to create an explanatory output of the steps, because I was TOO LAZY to have done all of the explanation work by hand! It has a corresponding .py file.
-4. SystemOfEquations.ipynb is a Jupyter notebook that walks you through the inversion programming steps. There is a corresponding .py version.
-5. LinearAlgebraPurePython.py is a module file to be imported and have it's functions called in basic linear algebra work.
-6. LinearAlgebraPractice.py is a simple python script that imports LinearAlgebraPurePython.py and uses it's functions.
-7. ShortImplementation.py is an attempt to make the shortest piece of python code possible to invert a matrix with the methods explained. I don't recommend using it. The shortest code is RARELY the best code. I'm a fan of clarity and maintainability.
+These efforts **will** provide insights and better understanding, but those insights won't likely fly out at us every post and repo. Rather, we are building a foundation that will support those insights in the future. To streamline some upcoming repos and posts, I wanted to cover some basic functions that will make those future repos and posts easier. Obviously, if we are avoiding using numpy and scipy, we'll have to create our own convenience tools. This repo covers those convenience tools.  
+
+At one end of the spectrum, if you are new to linear algebra or python or both, I believe that you will find this post helpful among, I hope, a good group of saved links.
+
+At the other end of the spectrum, if you have background with python and linear algebra, your reason to read this post would be  to compare how I did it to how you'd do it. The review may give you some new ideas, <em>or it may confirm that you still like your way better.
+
+## Further Explanation
+
+Please find the blog post related to this repo at https://integratedmlai.com/
 
 ## Deploying / Publishing
 
@@ -27,7 +28,7 @@ I am open to share the development and improvements of this with others, but it 
 
 ## Links
 
-This work came from ![My GitHub Repo](https://github.com/ThomIves/SystemOfEquations) originally.
+This work came from ![My GitHub Repo](https://github.com/ThomIves/BasicLinearAlgebraToolsPurePy) originally.
 
 ## Licensing
 
