@@ -247,3 +247,83 @@ def unitize_vector(vector):
             new[i][j] = new[i][j] / mag
 
     return new
+
+def check_squareness(A):
+    """
+    Makes sure that a matrix is square
+        :param A: The matrix to be checked.
+    """
+    if len(A) != len(A[0]):
+        raise ArithmeticError("Matrix must be square to inverse.")
+
+def determinant_recursive(A, total=0):
+    """
+    Find determinant of a square matrix using full recursion
+        :param A: the matrix to find the determinant for
+        :param total=0: safely establish a total at each recursion level
+
+        :returns: the running total for the levels of recursion
+    """
+    # Section 1: store indices in list for flexible row referencing
+    indices = list(range(len(A)))
+    
+    # Section 2: when at 2x2 submatrices recursive calls end
+    if len(A) == 2 and len(A[0]) == 2:
+        val = A[0][0] * A[1][1] - A[1][0] * A[0][1]
+        return val
+
+    # Section 3: define submatrix for focus column and call this function
+    for fc in indices: # for each focus column, find the submatrix ...
+        As = copy_matrix(A) # make a copy, and ...
+        As = As[1:] # ... remove the first row
+        height = len(As)
+
+        for i in range(height): # for each remaining row of submatrix ...
+            As[i] = As[i][0:fc] + As[i][fc+1:] # remove the focus column
+
+        sign = (-1) ** (fc % 2) # alternate signs for submatrix determinant
+        sub_det = determinant_recursive(As) # pass submatrix recursively
+        total += A[0][fc] * sign * sub_det # total all returns recursively
+
+    return total
+
+def determinant_fast(A):
+    """
+    Create an upper triangle matrix using row operations.
+        Then product of diagonal elements is the determinant
+
+        :param A: the matrix to find the determinant for
+
+        :return: the determinant of the matrix
+    """
+    # Section 1: Establish n parameter and copy A
+    n = len(A)
+    AM = copy_matrix(A)
+
+    # Section 2: Row manipulate A into an upper triangle matrix
+    for fd in range(n): # fd stands for focus diagonal
+        for i in range(fd+1,n): # skip row with fd in it.
+            crScaler = AM[i][fd] / AM[fd][fd] # cr stands for "current row".
+            for j in range(n): # cr - crScaler * fdRow, but one element at a time.
+                AM[i][j] = AM[i][j] - crScaler * AM[fd][j]
+    
+    # Section 3: Once AM is in upper triangle form ...
+    product = 1.0
+    for i in range(n):
+        product *= AM[i][i] # ... product of diagonals is determinant
+
+    return product
+
+def check_non_singular(A):
+    """
+    Ensure matrix is NOT singular
+        :param A: The matrix under consideration
+
+        :return: determinant of A - nonzero is positive boolean
+                  otherwise, raise ArithmeticError
+    """
+    det = determinant_fast(A)
+    if det != 0:
+        return det
+    else:
+        raise ArithmeticError("Singular Matrix!")
