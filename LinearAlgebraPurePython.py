@@ -279,13 +279,30 @@ def determinant_recursive(A, total=0):
         height = len(As)
 
         for i in range(height): # for each remaining row of submatrix ...
-            As[i] = As[i][0:fc] + As[i][fc+1:] # remove the focus column
+            As[i] = As[i][0:fc] + As[i][fc+1:] # remove the focus column elements
 
-        sign = (-1) ** (fc % 2) # alternate signs for submatrix determinant
+        sign = (-1) ** (fc % 2) # alternate signs for submatrix multiplier
         sub_det = determinant_recursive(As) # pass submatrix recursively
-        total += A[0][fc] * sign * sub_det # total all returns recursively
+        total += sign * A[0][fc] * sub_det # total all returns from recursion
 
     return total
+
+def sort_rows_by_leading_zeros(A):
+    for i in range(len(A)):
+        count = 0
+        for val in A[i]:
+            if val == 0:
+                count += 1
+            else: 
+                break
+        A[i] = [count] + A[i]
+
+    A.sort()
+
+    for i in range(len(A)):
+        A[i] = A[i][1:]
+
+    return A
 
 def determinant_fast(A):
     """
@@ -302,6 +319,8 @@ def determinant_fast(A):
 
     # Section 2: Row manipulate A into an upper triangle matrix
     for fd in range(n): # fd stands for focus diagonal
+        if AM[fd][fd] == 0: 
+            AM[fd][fd] = 1.0e-18 # Cheating by adding zero + ~zero
         for i in range(fd+1,n): # skip row with fd in it.
             crScaler = AM[i][fd] / AM[fd][fd] # cr stands for "current row".
             for j in range(n): # cr - crScaler * fdRow, but one element at a time.

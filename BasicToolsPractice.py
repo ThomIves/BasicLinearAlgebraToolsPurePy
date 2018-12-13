@@ -1,6 +1,8 @@
 import LinearAlgebraPurePython as la 
+import numpy as np 
 
 
+print('Shtuff from Basic Tools Post')
 print()
 la.print_matrix(la.zeros_matrix(3,3))
 print()
@@ -40,3 +42,65 @@ Vector = [[4],[4],[4]]
 unitVector = la.unitize_vector(Vector)
 la.print_matrix(unitVector)
 print() 
+print()
+
+print('### Recursive Determinant Shtuff')
+print()
+A = [[-2,2,-3],[-1,1,3],[2,0,-1]] # Matrix from wiki
+Det = la.determinant_recursive(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", round(Det,9))
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
+
+A = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+Det = la.determinant_recursive(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", Det)
+print("The Numpy Determinant of A is", npDet)
+print()
+
+A = [[1,2,3,4],[8,5,6,7],[9,12,10,11],[13,14,16,15]]
+Det = la.determinant_recursive(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", Det)
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
+
+A = [[1,2,3,4,1],[8,5,6,7,2],[9,12,10,11,3],[13,14,16,15,4],[10,8,6,4,2]]
+Det = la.determinant_recursive(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", Det)
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
+print()
+
+print('### Fast Determinant Shtuff')
+print()
+A = [[-2,2,-3],[-1,1,3],[2,0,-1]] # Matrix from wiki
+Det = la.determinant_fast(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", round(Det,9))
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
+
+A = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+Det = la.determinant_fast(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", round(Det,9)+0)
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
+
+A = [[1,2,3,4],[8,5,6,7],[9,12,10,11],[13,14,16,15]]
+Det = la.determinant_fast(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", round(Det,9))
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
+
+A = [[1,2,3,4,1],[8,5,6,7,2],[9,12,10,11,3],[13,14,16,15,4],[10,8,6,4,2]]
+Det = la.determinant_fast(A)
+npDet = np.linalg.det(A)
+print("Determinant of A is", round(Det,9))
+print("The Numpy Determinant of A is", round(npDet,9))
+print()
