@@ -287,23 +287,6 @@ def determinant_recursive(A, total=0):
 
     return total
 
-def sort_rows_by_leading_zeros(A):
-    for i in range(len(A)):
-        count = 0
-        for val in A[i]:
-            if val == 0:
-                count += 1
-            else: 
-                break
-        A[i] = [count] + A[i]
-
-    A.sort()
-
-    for i in range(len(A)):
-        A[i] = A[i][1:]
-
-    return A
-
 def determinant_fast(A):
     """
     Create an upper triangle matrix using row operations.
