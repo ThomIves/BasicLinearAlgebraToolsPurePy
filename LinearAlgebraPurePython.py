@@ -1,4 +1,4 @@
-# Linear Regression - Library Free, i.e. no numpy or scipy 
+# Linear Regression - Library Free, i.e. no numpy or scipy
 
 
 def zeros_matrix(rows, cols):
@@ -17,6 +17,7 @@ def zeros_matrix(rows, cols):
 
     return M
 
+
 def identity_matrix(n):
     """
     Creates and returns an identity matrix.
@@ -24,11 +25,12 @@ def identity_matrix(n):
 
         :return: a square identity matrix
     """
-    I = zeros_matrix(n, n)
+    IdM = zeros_matrix(n, n)
     for i in range(n):
-        I[i][i] = 1.0
+        IdM[i][i] = 1.0
 
-    return I
+    return IdM
+
 
 def copy_matrix(M):
     """
@@ -38,7 +40,8 @@ def copy_matrix(M):
         :return: A copy of the given matrix
     """
     # Section 1: Get matrix dimensions
-    rows = len(M); cols = len(M[0])
+    rows = len(M)
+    cols = len(M[0])
 
     # Section 2: Create a new matrix of zeros
     MC = zeros_matrix(rows, cols)
@@ -50,13 +53,15 @@ def copy_matrix(M):
 
     return MC
 
+
 def print_matrix(M, decimals=3):
     """
     Print a matrix one row at a time
         :param M: The matrix to be printed
     """
     for row in M:
-        print([round(x,decimals)+0 for x in row])
+        print([round(x, decimals)+0 for x in row])
+
 
 def transpose(M):
     """
@@ -66,11 +71,12 @@ def transpose(M):
         :return: The transpose of the given matrix
     """
     # Section 1: if a 1D array, convert to a 2D array = matrix
-    if not isinstance(M[0],list):
+    if not isinstance(M[0], list):
         M = [M]
 
     # Section 2: Get dimensions
-    rows = len(M); cols = len(M[0])
+    rows = len(M)
+    cols = len(M[0])
 
     # Section 3: MT is zeros matrix with transposed dimensions
     MT = zeros_matrix(cols, rows)
@@ -82,6 +88,7 @@ def transpose(M):
 
     return MT
 
+
 def matrix_addition(A, B):
     """
     Adds two matrices and returns the sum
@@ -91,8 +98,10 @@ def matrix_addition(A, B):
         :return: Matrix sum
     """
     # Section 1: Ensure dimensions are valid for matrix addition
-    rowsA = len(A); colsA = len(A[0])
-    rowsB = len(B); colsB = len(B[0])
+    rowsA = len(A)
+    colsA = len(A[0])
+    rowsB = len(B)
+    colsB = len(B[0])
     if rowsA != rowsB or colsA != colsB:
         raise ArithmeticError('Matrices are NOT the same size.')
 
@@ -106,6 +115,7 @@ def matrix_addition(A, B):
 
     return C
 
+
 def matrix_subtraction(A, B):
     """
     Subtracts matrix B from matrix A and returns difference
@@ -115,8 +125,10 @@ def matrix_subtraction(A, B):
         :return: Matrix difference
     """
     # Section 1: Ensure dimensions are valid for matrix subtraction
-    rowsA = len(A); colsA = len(A[0])
-    rowsB = len(B); colsB = len(B[0])
+    rowsA = len(A)
+    colsA = len(A[0])
+    rowsB = len(B)
+    colsB = len(B[0])
     if rowsA != rowsB or colsA != colsB:
         raise ArithmeticError('Matrices are NOT the same size.')
 
@@ -130,6 +142,7 @@ def matrix_subtraction(A, B):
 
     return C
 
+
 def matrix_multiply(A, B):
     """
     Returns the product of the matrix A * B
@@ -139,8 +152,10 @@ def matrix_multiply(A, B):
         :return: The product of the two matrices
     """
     # Section 1: Ensure A & B dimensions are correct for multiplication
-    rowsA = len(A); colsA = len(A[0])
-    rowsB = len(B); colsB = len(B[0])
+    rowsA = len(A)
+    colsA = len(A[0])
+    rowsB = len(B)
+    colsB = len(B[0])
     if colsA != rowsB:
         raise ArithmeticError(
             'Number of A columns must equal number of B rows.')
@@ -155,6 +170,7 @@ def matrix_multiply(A, B):
             C[i][j] = total
 
     return C
+
 
 def multiply_matrices(list):
     """
@@ -171,6 +187,7 @@ def multiply_matrices(list):
         matrix_product = matrix_multiply(matrix_product, matrix)
 
     return matrix_product
+
 
 def check_matrix_equality(A, B, tol=None):
     """
@@ -189,14 +206,15 @@ def check_matrix_equality(A, B, tol=None):
     #            use tolerance if given
     for i in range(len(A)):
         for j in range(len(A[0])):
-            if tol == None:
+            if tol is None:
                 if A[i][j] != B[i][j]:
                     return False
             else:
-                if round(A[i][j],tol) != round(B[i][j],tol):
+                if round(A[i][j], tol) != round(B[i][j], tol):
                     return False
 
     return True
+
 
 def dot_product(A, B):
     """
@@ -205,18 +223,21 @@ def dot_product(A, B):
         :param B: The second vector or matrix
     """
     # Section 1: Ensure A and B dimensions are the same
-    rowsA = len(A); colsA = len(A[0])
-    rowsB = len(B); colsB = len(B[0])
+    rowsA = len(A)
+    colsA = len(A[0])
+    rowsB = len(B)
+    colsB = len(B[0])
     if rowsA != rowsB or colsA != colsB:
         raise ArithmeticError('Matrices are NOT the same size.')
 
-    # Section 2: Sum the products 
+    # Section 2: Sum the products
     total = 0
     for i in range(rowsA):
         for j in range(colsB):
             total += A[i][j] * B[i][j]
 
     return total
+
 
 def unitize_vector(vector):
     """
@@ -231,7 +252,8 @@ def unitize_vector(vector):
             'Vector must be a row or column vector.')
 
     # Section 2: Determine vector magnitude
-    rows = len(vector); cols = len(vector[0])
+    rows = len(vector)
+    cols = len(vector[0])
     mag = 0
     for row in vector:
         for value in row:
@@ -248,6 +270,7 @@ def unitize_vector(vector):
 
     return new
 
+
 def check_squareness(A):
     """
     Makes sure that a matrix is square
@@ -255,6 +278,7 @@ def check_squareness(A):
     """
     if len(A) != len(A[0]):
         raise ArithmeticError("Matrix must be square to inverse.")
+
 
 def determinant_recursive(A, total=0):
     """
@@ -266,26 +290,27 @@ def determinant_recursive(A, total=0):
     """
     # Section 1: store indices in list for flexible row referencing
     indices = list(range(len(A)))
-    
+
     # Section 2: when at 2x2 submatrices recursive calls end
     if len(A) == 2 and len(A[0]) == 2:
         val = A[0][0] * A[1][1] - A[1][0] * A[0][1]
         return val
 
     # Section 3: define submatrix for focus column and call this function
-    for fc in indices: # for each focus column, find the submatrix ...
-        As = copy_matrix(A) # make a copy, and ...
-        As = As[1:] # ... remove the first row
+    for fc in indices:  # for each focus column, find the submatrix ...
+        As = copy_matrix(A)  # make a copy, and ...
+        As = As[1:]  # ... remove the first row
         height = len(As)
 
-        for i in range(height): # for each remaining row of submatrix ...
-            As[i] = As[i][0:fc] + As[i][fc+1:] # remove the focus column elements
+        for i in range(height):  # for each remaining row of submatrix ...
+            As[i] = As[i][0:fc] + As[i][fc+1:]  # zero focus column elements
 
-        sign = (-1) ** (fc % 2) # alternate signs for submatrix multiplier
-        sub_det = determinant_recursive(As) # pass submatrix recursively
-        total += sign * A[0][fc] * sub_det # total all returns from recursion
+        sign = (-1) ** (fc % 2)  # alternate signs for submatrix multiplier
+        sub_det = determinant_recursive(As)  # pass submatrix recursively
+        total += sign * A[0][fc] * sub_det  # total all returns from recursion
 
     return total
+
 
 def determinant_fast(A):
     """
@@ -301,20 +326,21 @@ def determinant_fast(A):
     AM = copy_matrix(A)
 
     # Section 2: Row manipulate A into an upper triangle matrix
-    for fd in range(n): # fd stands for focus diagonal
-        if AM[fd][fd] == 0: 
-            AM[fd][fd] = 1.0e-18 # Cheating by adding zero + ~zero
-        for i in range(fd+1,n): # skip row with fd in it.
-            crScaler = AM[i][fd] / AM[fd][fd] # cr stands for "current row".
-            for j in range(n): # cr - crScaler * fdRow, but one element at a time.
+    for fd in range(n):  # fd stands for focus diagonal
+        if AM[fd][fd] == 0:
+            AM[fd][fd] = 1.0e-18  # Cheating by adding zero + ~zero
+        for i in range(fd+1, n):  # skip row with fd in it.
+            crScaler = AM[i][fd] / AM[fd][fd]  # cr stands for "current row".
+            for j in range(n):  # cr - crScaler * fdRow, one element at a time.
                 AM[i][j] = AM[i][j] - crScaler * AM[fd][j]
-    
+
     # Section 3: Once AM is in upper triangle form ...
     product = 1.0
     for i in range(n):
-        product *= AM[i][i] # ... product of diagonals is determinant
+        product *= AM[i][i]  # ... product of diagonals is determinant
 
     return product
+
 
 def check_non_singular(A):
     """
